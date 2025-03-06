@@ -1,6 +1,6 @@
 <?php
 
-namespace Meanify\LaravelPaymentHub\Providers;
+namespace Meanify\LaravelHelpers\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
