@@ -41,7 +41,7 @@ class HtmlUtil
                 $url .= '?c='.Carbon::now()->format('YmdHis');
             } else
             {
-                $url .= '?c='.(env('APP_CACHE_ASSETS') == null ? substr(utils()->git()->getCurrentGitCommit(), 0, 6) : env('APP_CACHE_ASSETS'));
+                $url .= '?c='.(env('APP_CACHE_ASSETS') == null ? substr(meanifyHelpers()->git()->getCurrentGitCommit(), 0, 6) : env('APP_CACHE_ASSETS'));
             }
         }
 

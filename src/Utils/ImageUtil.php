@@ -3,6 +3,7 @@
 namespace Meanify\LaravelHelpers\Utils;
 
 use Illuminate\Support\Str;
+use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
 class ImageUtil
@@ -60,7 +61,7 @@ class ImageUtil
 
         $directory = storage_path().'/app/public/temp/'.Str::random(30);
 
-        utils()->directory()->initDirectory($directory);
+        meanifyHelpers()->directory()->initDirectory($directory);
 
         $path = $directory.'/'.$filename;
 
@@ -83,7 +84,7 @@ class ImageUtil
         {
             $folder = storage_path('temp');
 
-            utils()->directory()->initDirectory($folder);
+            meanifyHelpers()->directory()->initDirectory($folder);
 
             $name = $name.'-'.time().'.'.$extension;
             $path = $folder.'/'.$name;
@@ -101,5 +102,58 @@ class ImageUtil
         }
 
         return $path;
+    }
+
+    /**
+     * @param string $file_path
+     * @param bool $return_original_if_exception
+     * @param int|float $quality
+     * @return array|string|string[]
+     * @throws \Exception
+     */
+    public function convertImageToWebp(string $file_path, bool $return_original_if_exception = true, $quality = 60)
+    {
+        try
+        {
+            $image_path = str_replace(['png','jpeg','jpg'],'webp', $file_path);
+
+            $manager           = new ImageManager(new Driver());
+            $intervetion_image = $manager->read($file_path);
+            $encoded           = $intervetion_image->toWebp($quality);
+            $encoded->save($image_path);
+
+            return $image_path;
+        }
+        catch (\Exception $exception)
+        {
+            if($return_original_if_exception)
+            {
+                return $file_path;
+            }
+
+            throw $exception;
+        }
+    }
+
+    /**
+     * @param string $file_path
+     * @param string|null $default_data_uri_to_return
+     * @return string|null
+     */
+    public function convertImageToDataUri(string $file_path, ?string $default_data_uri_to_return = null)
+    {
+        try
+        {
+            $manager = new ImageManager(new Driver());
+            $intervetion_image = $manager->read($file_path);
+
+            $data_uri = $intervetion_image->toPng()->toDataUri();
+
+            return $data_uri;
+        }
+        catch (\Throwable $e)
+        {
+            return $default_data_uri_to_return ?? null;
+        }
     }
 }

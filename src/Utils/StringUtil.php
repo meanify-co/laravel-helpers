@@ -71,7 +71,7 @@ class StringUtil
         $first_name = '';
         $last_name  = '';
 
-        if (! utils()->string()->checkStringContains($full_name, ' '))
+        if (! meanifyHelpers()->string()->checkStringContains($full_name, ' '))
         {
             $first_name = $full_name;
         } else

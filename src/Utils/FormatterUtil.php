@@ -200,7 +200,7 @@ class FormatterUtil
 
         $carbon->setTimezone($this->timezone ?? config('app.timezone'));
 
-        if (! utils()->string()->checkStringIsNull($format))
+        if (! meanifyHelpers()->string()->checkStringIsNull($format))
         {
             $result = $carbon->format($format);
         } else

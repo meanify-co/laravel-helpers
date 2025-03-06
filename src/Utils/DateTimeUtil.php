@@ -11,7 +11,7 @@ class DateTimeUtil
      */
     public function getDateFormatByLanguage(?string $lang = null)
     {
-        $language = $lang ?? utils()->request()->getUserLanguageFromRequest();
+        $language = $lang ?? meanifyHelpers()->request()->getUserLanguageFromRequest();
 
         $format = 'Y-m-d';
 

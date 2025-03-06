@@ -35,7 +35,7 @@ class XlsxUtil
         //Format options
 
         $creator                    = $options['creator']                     ?? null;
-        $filename_without_extension = $options['filename'] ?? (str_replace(' ', '-', utils()->string()->removeAccentuation($name)));
+        $filename_without_extension = $options['filename'] ?? (str_replace(' ', '-', meanifyHelpers()->string()->removeAccentuation($name)));
         $directory                  = $options['directory']                 ?? base_path('storage/temp/xlsx/'.Str::uuid()->toString());
         $label_bg_color             = $options['label_bg_color']       ?? self::$LABEL_BG_COLOR;
         $label_font_color           = $options['label_font_color']   ?? self::$LABEL_FONT_COLOR;
@@ -65,8 +65,8 @@ class XlsxUtil
             $cell = $index.'1';
             $sheet->setCellValue($cell, $label);
             $tab_colors[$cell] = [
-                'bg_color'   => utils()->mask()->removeMask($label_bg_color),
-                'font_color' => utils()->mask()->removeMask($label_font_color),
+                'bg_color'   => meanifyHelpers()->mask()->removeMask($label_bg_color),
+                'font_color' => meanifyHelpers()->mask()->removeMask($label_font_color),
             ];
             $index++;
         }
@@ -78,7 +78,7 @@ class XlsxUtil
 
         foreach ($header_values as $item)
         {
-            $item = utils()->array()->arrayToObject($item);
+            $item = meanifyHelpers()->array()->arrayToObject($item);
 
             $cell = $index.'2';
             $sheet->setCellValue($cell, $item->value);
@@ -99,8 +99,8 @@ class XlsxUtil
             $cell = $index.'4';
             $sheet->setCellValue($cell, $label);
             $tab_colors[$cell] = [
-                'bg_color'   => utils()->mask()->removeMask($label_bg_color),
-                'font_color' => utils()->mask()->removeMask($label_font_color),
+                'bg_color'   => meanifyHelpers()->mask()->removeMask($label_bg_color),
+                'font_color' => meanifyHelpers()->mask()->removeMask($label_font_color),
             ];
             $index++;
         }
@@ -116,7 +116,7 @@ class XlsxUtil
 
             foreach ($items as $item)
             {
-                $item = utils()->array()->arrayToObject($item);
+                $item = meanifyHelpers()->array()->arrayToObject($item);
 
                 $cell = $index."$number";
                 $sheet->setCellValue($cell, $item->value);
@@ -149,7 +149,7 @@ class XlsxUtil
         //------------------------------------------------------------------------------------------------------------//
         $spreadsheet->getProperties()->setTitle(substr($name, 0, 31));
 
-        if (! utils()->string()->checkStringIsNull($creator))
+        if (! meanifyHelpers()->string()->checkStringIsNull($creator))
         {
             $spreadsheet->getProperties()->setTitle($creator);
         }
@@ -222,7 +222,7 @@ class XlsxUtil
                 applyFromArray([
                     'font' => [
                         'bold'  => false,
-                        'color' => ['rgb' => utils()->mask()->removeMask($label_font_color)],
+                        'color' => ['rgb' => meanifyHelpers()->mask()->removeMask($label_font_color)],
                         'size'  => 10,
                         'name'  => 'Verdana',
                     ],
@@ -239,7 +239,7 @@ class XlsxUtil
                     'fill' => [
                         'fillType'   => Fill::FILL_NONE,
                         'rotation'   => 90,
-                        'startColor' => ['rgb' => utils()->mask()->removeMask($label_bg_color)],
+                        'startColor' => ['rgb' => meanifyHelpers()->mask()->removeMask($label_bg_color)],
                     ],
                 ]);
 
@@ -271,7 +271,7 @@ class XlsxUtil
             $spreadsheet->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
 
             // Height
-            $row = utils()->string()->onlyNumbers($cell);
+            $row = meanifyHelpers()->string()->onlyNumbers($cell);
 
             $value = $sheet->getCell($cell)->getValue();
 

@@ -58,7 +58,7 @@ class ArrayUtil
             $array[] = self::getValueFromArray($item, $key, '');
         }
 
-        $string = utils()->array()->arrayToString($array, $space_between_items ? ' ' : '', $include_dot_char);
+        $string = meanifyHelpers()->array()->arrayToString($array, $space_between_items ? ' ' : '', $include_dot_char);
 
         return $string;
     }
@@ -72,7 +72,7 @@ class ArrayUtil
     {
         if ($convert_to_array_if_is_string && is_string($array))
         {
-            if (utils()->string()->isValidJson($array))
+            if (meanifyHelpers()->string()->isValidJson($array))
             {
                 $array = json_decode($array);
             }
