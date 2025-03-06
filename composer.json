@@ -1,0 +1,40 @@
+{
+    "name": "meanify-co/laravel-helpers",
+    "description": "A PHP library with helpers for Laravel",
+    "authors": [
+        {
+            "name": "Daniel Barcelos",
+            "email": "daniel@meanify.co"
+        }
+    ],
+    "keywords": [
+        "utils",
+        "helpers",
+        "php",
+        "laravel"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^7.3 || 8.*",
+        "guzzlehttp/guzzle": "^7.8",
+        "respect/validation": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Meanify\\LaravelHelpers\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Meanify\\LaravelHelpers\\Providers\\MeanifyLaravelHelperServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php artisan package:discover"
+        ]
+    }
+}
