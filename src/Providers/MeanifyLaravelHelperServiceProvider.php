@@ -11,7 +11,7 @@ class MeanifyLaravelHelperServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!function_exists('meanifyHelpers')) {
+        if (!function_exists('meanify_helpers')) {
             require_once __DIR__ . '/../../boot.php';
         }
     }
@@ -21,7 +21,7 @@ class MeanifyLaravelHelperServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('meanifyHelpers', function($app, $params) {
+        $this->app->singleton('meanify_helpers', function($app, $params) {
             return new \Meanify\LaravelHelpers\Kernel();
         });
     }

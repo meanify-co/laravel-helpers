@@ -1,12 +1,12 @@
 <?php
 
-if (! function_exists('meanifyHelpers'))
+if (! function_exists('meanify_helpers'))
 {
     /**
      * @return \Meanify\LaravelHelpers\Kernel
      */
-    function meanifyHelpers()
+    function meanify_helpers()
     {
-        return app('meanifyHelpers');
+        return app('meanify_helpers');
     }
 }
