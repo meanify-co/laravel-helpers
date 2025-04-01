@@ -98,4 +98,30 @@ class MaskUtil
 
         return $phone;
     }
+
+    /**
+     * @notes Convert bytes to readable by humans
+     * @param $size
+     * @param $precision
+     * @param $separateWithSpace
+     * @return float|int|mixed|string
+     */
+    public function makeBytesToHumanReadable($size, $precision = 0, $separateWithSpace = true)
+    {
+        try
+        {
+            $units = array('B','kB','MB','GB','TB','PB','EB','ZB','YB');
+            $step = 1024;
+            $i = 0;
+            while (($size / $step) > 0.9) {
+                $size = $size / $step;
+                $i++;
+            }
+            return round($size, $precision).($separateWithSpace ? ' ' : '').$units[$i];
+        }
+        catch (\Throwable $e)
+        {
+            return $size;
+        }
+    }
 }
