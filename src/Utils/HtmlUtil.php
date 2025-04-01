@@ -90,8 +90,8 @@ class HtmlUtil
     /**
      * @return RenderBladeMethods
      */
-    public function render()
+    public function render(?string $prefix_path = null, bool $throwable = true)
     {
-        return new RenderBladeMethods();
+        return new RenderBladeMethods($prefix_path, $throwable);
     }
 }
