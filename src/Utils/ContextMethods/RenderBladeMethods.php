@@ -6,13 +6,20 @@ use Illuminate\Support\Facades\File;
 
 class RenderBladeMethods
 {
-    private $throwable;
+    private $default_callback;
+    private $default_throwable;
     private $prefix_path;
 
-    public function __construct(?string $prefix_path = null, bool $throwable = true)
+    /**
+     * @param string|null $prefix_path
+     * @param bool $throwable
+     * @param callable|null $callback_on_error
+     */
+    public function __construct(?string $prefix_path = null, bool $throwable = true, ?callable $callback_on_error = null)
     {
-        $this->prefix_path = $prefix_path;
-        $this->throwable = $throwable;
+        $this->prefix_path       = $prefix_path;
+        $this->default_throwable = $throwable;
+        $this->default_callback  = $callback_on_error;
 
         return $this;
     }
@@ -23,7 +30,7 @@ class RenderBladeMethods
      * @return void
      * @throws \Exception
      */
-    public function load(string $path, array|object $data = [], ?callable $callback_on_error = null)
+    public function load(string $path, array|object $data = [], bool $throwable = false, ?callable $callback_on_error = null)
     {
         try
         {
@@ -33,7 +40,7 @@ class RenderBladeMethods
 
             if(!File::exists($original_path))
             {
-                if($this->throwable)
+                if($throwable ?? $this->default_throwable)
                 {
                     throw new \Exception('Blade file not found: '.$blade_path);
                 }
@@ -52,6 +59,12 @@ class RenderBladeMethods
             if (is_callable($callback_on_error))
             {
                 $callback_on_error($e, $path, $data);
+            }
+            else if (is_callable($this->default_callback))
+            {
+                $default_callback = $this->default_callback;
+
+                $default_callback($e, $path, $data);
             }
             else
             {
