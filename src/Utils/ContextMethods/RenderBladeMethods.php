@@ -40,7 +40,7 @@ class RenderBladeMethods
 
             if(!File::exists($original_path))
             {
-                if($throwable ?? $this->default_throwable)
+                if($throwable or $this->default_throwable)
                 {
                     throw new \Exception('Blade file not found: '.$blade_path);
                 }
