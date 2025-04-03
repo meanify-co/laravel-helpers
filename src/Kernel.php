@@ -19,6 +19,7 @@ use Meanify\LaravelHelpers\Utils\JobUtil;
 use Meanify\LaravelHelpers\Utils\LogUtil;
 use Meanify\LaravelHelpers\Utils\MaskUtil;
 use Meanify\LaravelHelpers\Utils\ModelUtil;
+use Meanify\LaravelHelpers\Utils\ObjectUtil;
 use Meanify\LaravelHelpers\Utils\ParseUtil;
 use Meanify\LaravelHelpers\Utils\PdfUtil;
 use Meanify\LaravelHelpers\Utils\PhoneNumberUtil;
@@ -127,6 +128,11 @@ class Kernel
     public function model()
     {
         return new ModelUtil;
+    }
+
+    public function object()
+    {
+        return new ObjectUtil;
     }
 
     public function parse()
