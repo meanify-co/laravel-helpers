@@ -15,6 +15,7 @@ use Meanify\LaravelHelpers\Utils\FormatterUtil;
 use Meanify\LaravelHelpers\Utils\GitUtil;
 use Meanify\LaravelHelpers\Utils\HtmlUtil;
 use Meanify\LaravelHelpers\Utils\ImageUtil;
+use Meanify\LaravelHelpers\Utils\InputUtil;
 use Meanify\LaravelHelpers\Utils\JobUtil;
 use Meanify\LaravelHelpers\Utils\LogUtil;
 use Meanify\LaravelHelpers\Utils\MaskUtil;
@@ -108,6 +109,15 @@ class Kernel
     public function image()
     {
         return new ImageUtil;
+    }
+
+    /**
+     * @param array|null $request_inputs
+     * @return \Meanify\LaravelHelpers\Utils\InputUtil
+     */
+    public function input(?array $request_inputs = null)
+    {
+        return new InputUtil($request_inputs);
     }
 
     public function jobsAndQueues()
