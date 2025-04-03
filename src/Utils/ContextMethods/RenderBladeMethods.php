@@ -49,7 +49,13 @@ class RenderBladeMethods
             }
             else
             {
-                $html = view($blade_path, json_decode(json_encode($data,256),true))->render();
+                if (is_object($data)) {
+                    $data = collect($data)->map(function ($value) {
+                        return $value;
+                    })->all();
+                }
+
+                $html = view($blade_path, $data)->render();
             }
 
             return $html;
