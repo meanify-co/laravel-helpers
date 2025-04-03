@@ -2,6 +2,7 @@
 
 namespace Meanify\LaravelHelpers;
 
+use Meanify\LaravelHelpers\Utils\CookieUtil;
 use Meanify\LaravelHelpers\Utils\ArrayUtil;
 use Meanify\LaravelHelpers\Utils\BladeUtil;
 use Meanify\LaravelHelpers\Utils\ConsoleUtil;
@@ -48,6 +49,11 @@ class Kernel
         return new ConsoleUtil;
     }
 
+    public function cookie()
+    {
+        return new CookieUtil();
+    }
+    
     public function country()
     {
         return new CountryUtil;
