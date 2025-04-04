@@ -57,11 +57,11 @@ class ImageUtil
 
         $base64   = str_replace('data:image/'.$base64image['extension'].';base64,', '', $base64);
         $base64   = str_replace(' ', '+', $base64);
-        $filename = Str::random(30) . 'Context' .$base64image['extension'];
+        $filename = Str::random(30).'.'.$base64image['extension'];
 
         $directory = storage_path().'/app/public/temp/'.Str::random(30);
 
-        meanifyHelpers()->directory()->initDirectory($directory);
+        meanify_helpers()->directory()->initDirectory($directory);
 
         $path = $directory.'/'.$filename;
 
@@ -84,14 +84,16 @@ class ImageUtil
         {
             $folder = storage_path('temp');
 
-            meanifyHelpers()->directory()->initDirectory($folder);
+            meanify_helpers()->directory()->initDirectory($folder);
 
             $name = $name.'-'.time().'.'.$extension;
             $path = $folder.'/'.$name;
 
-            ImageManager::imagick()->read($file)->resize($width, $height)->save($path);
-        } 
-        catch (\Throwable $exception)
+            ImageManager::imagick()->
+            read($file)->
+            resize($width, $height)->
+            save($path);
+        } catch (\Throwable $exception)
         {
             if (env('APP_DD') == true)
             {
@@ -109,7 +111,7 @@ class ImageUtil
      * @return array|string|string[]
      * @throws \Exception
      */
-    public function convertImageToWebp(string $file_path, bool $return_original_if_exception = true, $quality = 60)
+    public function convertImageToWebp(string $file_path, bool $return_original_if_exception = true, int|float $quality = 60)
     {
         try
         {
@@ -138,7 +140,7 @@ class ImageUtil
      * @param string|null $default_data_uri_to_return
      * @return string|null
      */
-    public function convertImageToDataUri(string $file_path, ?string $default_data_uri_to_return = null)
+    public function convertImageToDataUri(string $file_path, string|null $default_data_uri_to_return = null)
     {
         try
         {

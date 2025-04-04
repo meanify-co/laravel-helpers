@@ -435,14 +435,21 @@ class StringUtil
      */
     public function isValidJson($string)
     {
-        $decoded = json_decode($string, true);
-
-        if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded)))
+        try
         {
-            return true;
-        }
+            $decoded = json_decode($string, true);
 
-        return false;
+            if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded)))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        catch (\Throwable $e)
+        {
+            return false;
+        }
     }
 
     /**

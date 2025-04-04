@@ -16,22 +16,25 @@ class HtmlUtil
      */
     public function assetUrl($path, $assetsPrefix = true, $withRefreshCache = true, $datetimeCacheKey = false)
     {
+        $prefixConfigured = env('APP_ASSET_PATH','/assets');
+        
+        
         if (substr($path, 0, 1) != '/')
         {
             if ($assetsPrefix)
             {
-                $path = '/app-assets/'.$path;
+                $path = $prefixConfigured.'/'.$path;
             } else
             {
                 $path = '/'.$path;
             }
         }
 
-        if (substr($path, 0, 12) != '/app-assets/')
+        if (substr($path, 0, strlen($prefixConfigured . '/')) != ($prefixConfigured . '/'))
         {
             if ($assetsPrefix)
             {
-                $path = '/app-assets'.$path;
+                $path = $prefixConfigured . $path;
             }
         }
 
