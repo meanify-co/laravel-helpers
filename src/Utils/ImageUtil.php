@@ -89,11 +89,9 @@ class ImageUtil
             $name = $name.'-'.time().'.'.$extension;
             $path = $folder.'/'.$name;
 
-            ImageManager::imagick()->
-                read($file)->
-                resize($width, $height)->
-                save($path);
-        } catch (\Throwable $exception)
+            ImageManager::imagick()->read($file)->resize($width, $height)->save($path);
+        } 
+        catch (\Throwable $exception)
         {
             if (env('APP_DD') == true)
             {
