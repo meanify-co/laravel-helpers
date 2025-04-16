@@ -43,6 +43,10 @@ class ValidationUtil
         return (int) $ean12 . $check_digit;
     }
 
+    /**
+     * @param $code
+     * @return string
+     */
     public function calculateCheckDigitsForEan13($code)
     {
         $ean12    = '0' . str_pad($code, 11, '0', STR_PAD_LEFT);
@@ -68,4 +72,14 @@ class ValidationUtil
 
         return $ean12 . $check_digit;
     }
+
+    /**
+     * @param string $color
+     * @return bool
+     */
+    public function isValidHexColor(string $color): bool
+    {
+        return preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $color) === 1;
+    }
+
 }
