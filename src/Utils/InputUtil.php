@@ -2,6 +2,8 @@
 
 namespace Meanify\LaravelHelpers\Utils;
 
+use Illuminate\Support\Arr;
+
 class InputUtil
 {
     protected $inputs;
@@ -18,11 +20,6 @@ class InputUtil
      */
     public function get($input_key, $default = null): mixed
     {
-        if(isset($this->inputs[$input_key]))
-        {
-            return $this->inputs[$input_key];
-        }
-        
-        return $default;
+        return Arr::get($this->inputs, $input_key, $default);
     }
 }
