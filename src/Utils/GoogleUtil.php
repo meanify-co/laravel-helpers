@@ -19,7 +19,7 @@ class GoogleUtil
      * @param string $target_locale
      * @return string
      */
-    public function translate(string $text, string $source_locale, string $target_locale): string
+    public function translate(string $text, string $target_locale, ?string $source_locale = null): string
     {
         try
         {
@@ -27,7 +27,7 @@ class GoogleUtil
             {
                 $response = Http::post("https://translation.googleapis.com/language/translate/v2", [
                     'q' => $text,
-                    'source' => $source_locale,
+                    'source' => $source_locale ?: 'auto',
                     'target' => $target_locale,
                     'format' => 'text',
                     'key' => $this->api_key,
@@ -40,7 +40,7 @@ class GoogleUtil
 
                 $response = Http::get("https://translate.googleapis.com/translate_a/single", [
                     'client' => 'gtx',
-                    'sl' => $source_locale,
+                    'sl' => $source_locale ?: 'auto',
                     'tl' => $target_locale,
                     'dt' => 't',
                     'q' => $text,
@@ -53,6 +53,39 @@ class GoogleUtil
         catch (\Exception $e)
         {
             return $text;
+        }
+    }
+
+    /**
+     * @param string $text
+     * @return string|null
+     */
+    public function detectLanguage(string $text): ?string
+    {
+        try {
+            if ($this->api_key)
+            {
+                $response = Http::post("https://translation.googleapis.com/language/translate/v2/detect", [
+                    'q' => $text,
+                    'key' => $this->api_key,
+                ]);
+                return $response->json('data.detections.0.0.language');
+            }
+            else
+            {
+                $response = Http::get("https://translate.googleapis.com/translate_a/single", [
+                    'client' => 'gtx',
+                    'sl' => 'auto',
+                    'tl' => 'en',
+                    'dt' => 't',
+                    'q' => $text,
+                ]);
+                return $response->json()[2]; //
+            }
+        }
+        catch (\Exception $e)
+        {
+            return null;
         }
     }
 }
