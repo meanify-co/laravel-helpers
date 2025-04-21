@@ -13,6 +13,7 @@ use Meanify\LaravelHelpers\Utils\FileAndDirectoryUtil;
 use Meanify\LaravelHelpers\Utils\FloatUtil;
 use Meanify\LaravelHelpers\Utils\FormatterUtil;
 use Meanify\LaravelHelpers\Utils\GitUtil;
+use Meanify\LaravelHelpers\Utils\GoogleUtil;
 use Meanify\LaravelHelpers\Utils\HtmlUtil;
 use Meanify\LaravelHelpers\Utils\ImageUtil;
 use Meanify\LaravelHelpers\Utils\InputUtil;
@@ -101,6 +102,11 @@ class Kernel
         return new GitUtil;
     }
 
+    public function google(?string $api_key = null)
+    {
+        return new GoogleUtil($api_key);
+    }
+
     public function html()
     {
         return new HtmlUtil;
@@ -111,10 +117,6 @@ class Kernel
         return new ImageUtil;
     }
 
-    /**
-     * @param array|null $request_inputs
-     * @return \Meanify\LaravelHelpers\Utils\InputUtil
-     */
     public function input(?array $request_inputs = null)
     {
         return new InputUtil($request_inputs);
