@@ -36,8 +36,8 @@ class ModelUtil
 
         try
         {
-            $model_name     = meanifyHelpers()->model()->getModelName($model);
-            $model_instance = meanifyHelpers()->model()->instanceModelFromModelName($model_name);
+            $model_name     = meanify_helpers()->model()->getModelName($model);
+            $model_instance = meanify_helpers()->model()->instanceModelFromModelName($model_name);
 
             $model_code_prefix = $model_instance::$MODEL_CODE_PREFIX;
 

@@ -78,7 +78,7 @@ class MaskUtil
      */
     public function maskPhoneBr($number, $ddi = false)
     {
-        $phone = meanifyHelpers()->string()->onlyNumbers($number);
+        $phone = meanify_helpers()->string()->onlyNumbers($number);
 
         if (strlen($phone) > 10)
         {

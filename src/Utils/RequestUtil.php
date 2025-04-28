@@ -14,7 +14,7 @@ class RequestUtil
      */
     public function accountId()
     {
-        return meanifyHelpers()->request()->getAccountIdFromRequest();
+        return meanify_helpers()->request()->getAccountIdFromRequest();
     }
 
     /**
@@ -22,7 +22,7 @@ class RequestUtil
      */
     public function accountPublicId()
     {
-        return meanifyHelpers()->request()->getAccountPublicIdFromRequest();
+        return meanify_helpers()->request()->getAccountPublicIdFromRequest();
     }
 
     /**
@@ -30,7 +30,7 @@ class RequestUtil
      */
     public function userId()
     {
-        return meanifyHelpers()->request()->getUserIdFromRequest();
+        return meanify_helpers()->request()->getUserIdFromRequest();
     }
 
     /**
@@ -38,7 +38,7 @@ class RequestUtil
      */
     public function userPublicId()
     {
-        return meanifyHelpers()->request()->getUserPublicIdFromRequest();
+        return meanify_helpers()->request()->getUserPublicIdFromRequest();
     }
 
     /**
@@ -70,7 +70,7 @@ class RequestUtil
      */
     public function language()
     {
-        return meanifyHelpers()->request()->getUserLanguageFromRequest();
+        return meanify_helpers()->request()->getUserLanguageFromRequest();
     }
 
     /**
@@ -80,17 +80,17 @@ class RequestUtil
     {
         if ($key == 'name')
         {
-            return meanifyHelpers()->request()->getApplicationNameFromRequest();
+            return meanify_helpers()->request()->getApplicationNameFromRequest();
         }
 
         if ($key == 'domain')
         {
-            return meanifyHelpers()->request()->getApplicationDomainFromRequest();
+            return meanify_helpers()->request()->getApplicationDomainFromRequest();
         }
 
         if ($key == 'base_url')
         {
-            return meanifyHelpers()->request()->getApplicationBaseUrlFromRequest();
+            return meanify_helpers()->request()->getApplicationBaseUrlFromRequest();
         }
 
     }
@@ -103,7 +103,7 @@ class RequestUtil
     {
         $timezone = nikita()->DEFAULT_CONFIG_TIMEZONE;
 
-        $user_session = meanifyHelpers()->request()->getUserSessionFromRequest();
+        $user_session = meanify_helpers()->request()->getUserSessionFromRequest();
 
         if (isset($user_session->user_settings->timezone))
         {
@@ -128,7 +128,7 @@ class RequestUtil
     {
         $result = null;
 
-        $user_session = meanifyHelpers()->request()->getUserSessionFromRequest();
+        $user_session = meanify_helpers()->request()->getUserSessionFromRequest();
 
         if (isset($user_session->profile))
         {
@@ -172,7 +172,7 @@ class RequestUtil
      */
     public function getAccountPublicIdFromRequest()
     {
-        $user_session = meanifyHelpers()->request()->getUserSessionFromRequest();
+        $user_session = meanify_helpers()->request()->getUserSessionFromRequest();
 
         return $user_session?->account->public_id;
     }
@@ -190,7 +190,7 @@ class RequestUtil
      */
     public function getUserPublicIdFromRequest()
     {
-        $user_session = meanifyHelpers()->request()->getUserSessionFromRequest();
+        $user_session = meanify_helpers()->request()->getUserSessionFromRequest();
 
         return $user_session?->user->public_id;
     }

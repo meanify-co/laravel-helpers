@@ -70,7 +70,7 @@ class FloatUtil
      */
     public function parseFromRequest($value, ?string $lang = null)
     {
-        $language = $lang ?? meanifyHelpers()->request()->language();
+        $language = $lang ?? meanify_helpers()->request()->language();
 
         $parsed = $value;
 

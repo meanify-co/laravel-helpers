@@ -23,25 +23,25 @@ Check if a string contains one or more substrings:
 ~~~
 $string = "My string"
 
-meanifyHelpers()->string()->checkStringContains($string,'Laravel'); //false
-meanifyHelpers()->string()->checkStringContains($string,'str'); //true
-meanifyHelpers()->string()->checkStringContains($string,['my','Laravel']); //true
-meanifyHelpers()->string()->checkStringContains($string,['php','Laravel']); //false
+meanify_helpers()->string()->checkStringContains($string,'Laravel'); //false
+meanify_helpers()->string()->checkStringContains($string,'str'); //true
+meanify_helpers()->string()->checkStringContains($string,['my','Laravel']); //true
+meanify_helpers()->string()->checkStringContains($string,['php','Laravel']); //false
 ~~~
 
 ### Some methods:
 
 | Method      | Description      | Example |
 |--------------|-------------|--------------------|
-| array() | Array utils  | meanifyHelpers()->array()->arrayToObject(...$args)                 |
-| datetime() | Datetime Utils  | meanifyHelpers()->datetime()->getRangePeriods(...$args)                 |
-| encryption() | Encryption Utils  | meanifyHelpers()->encryption()->customEncrypt(...$args)                 |
-| git() | Git Utils  | meanifyHelpers()->git()->getCurrentGitCommit(...$args)                 |
-| image() | Image Utils  | meanifyHelpers()->image()->convertImageToWebp(...$args)                 |
-| mask() | Mask Utils  | meanifyHelpers()->mask()->insertMask(...$args)                 |
-| parse() | Parse Utils  | meanifyHelpers()->parse()->urlToDomain(...$args)                 |
-| string() | String Utils  | meanifyHelpers()->string()->removeAccentuation(...$args)                 |
-| zip() | Zip Utils  | meanifyHelpers()->zip()->createFromFiles(...$args)                 |
+| array() | Array utils  | meanify_helpers()->array()->arrayToObject(...$args)                 |
+| datetime() | Datetime Utils  | meanify_helpers()->datetime()->getRangePeriods(...$args)                 |
+| encryption() | Encryption Utils  | meanify_helpers()->encryption()->customEncrypt(...$args)                 |
+| git() | Git Utils  | meanify_helpers()->git()->getCurrentGitCommit(...$args)                 |
+| image() | Image Utils  | meanify_helpers()->image()->convertImageToWebp(...$args)                 |
+| mask() | Mask Utils  | meanify_helpers()->mask()->insertMask(...$args)                 |
+| parse() | Parse Utils  | meanify_helpers()->parse()->urlToDomain(...$args)                 |
+| string() | String Utils  | meanify_helpers()->string()->removeAccentuation(...$args)                 |
+| zip() | Zip Utils  | meanify_helpers()->zip()->createFromFiles(...$args)                 |
 
 
 

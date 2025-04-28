@@ -9,7 +9,7 @@ class TimezoneUtil
      */
     public function normalizeTimezone(?string $timezone, string $return_locale_or_offset = 'locale')
     {
-        if (meanifyHelpers()->string()->checkStringContains($timezone, '@'))
+        if (meanify_helpers()->string()->checkStringContains($timezone, '@'))
         {
             [$offset, $locale] = explode('@', $timezone);
 

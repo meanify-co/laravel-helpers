@@ -34,7 +34,7 @@ class PhoneNumberUtil
             } else
             {
                 //try to get area code
-                $phone_number = meanifyHelpers()->mask()->removeMask($phone_number, [' ']);
+                $phone_number = meanify_helpers()->mask()->removeMask($phone_number, [' ']);
 
                 $phone_parts = explode(' ', $phone_number);
 
@@ -65,7 +65,7 @@ class PhoneNumberUtil
 
         try
         {
-            $phone_number = meanifyHelpers()->mask()->removeMask($phone_number_with_area_code, [' ']);
+            $phone_number = meanify_helpers()->mask()->removeMask($phone_number_with_area_code, [' ']);
 
             $phone_parts = explode(' ', $phone_number);
 
