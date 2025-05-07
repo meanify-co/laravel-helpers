@@ -147,4 +147,34 @@ class ArrayUtil
 
         return $emails;
     }
+
+    /**
+     * @param array $array
+     * @param $value
+     * @param $removeAll
+     * @return array
+     */
+    function removeValue(array $array, $value, $removeAll = true)
+    {
+        if ($removeAll)
+        {
+            $filtered = array_filter($array, function ($item) use ($value) {
+                return $item !== $value;
+            });
+        }
+        else
+        {
+            $found = false;
+            $filtered = [];
+            foreach ($array as $item) {
+                if (!$found && $item === $value) {
+                    $found = true;
+                    continue;
+                }
+                $filtered[] = $item;
+            }
+        }
+
+        return array_values($filtered);
+    }
 }
