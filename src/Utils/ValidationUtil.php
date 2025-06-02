@@ -77,9 +77,37 @@ class ValidationUtil
      * @param string $color
      * @return bool
      */
-    public function isValidHexColor(string $color): bool
+    public function isValidHexColor(string $color)
     {
         return preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $color) === 1;
     }
+
+    /**
+     * @param $value
+     * @return bool
+     */
+    public function isValidIp($value)
+    {
+        return filter_var($value, FILTER_VALIDATE_IP) !== false;
+    }
+
+    /**
+     * @param $value
+     * @return bool
+     */
+    function isValidIpv4($value)
+    {
+        return filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) !== false;
+    }
+
+    /**
+     * @param $value
+     * @return bool
+     */
+    function isValidIpv6($value)
+    {
+        return filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) !== false;
+    }
+
 
 }
